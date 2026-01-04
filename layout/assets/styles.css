@@ -1,0 +1,78 @@
+body{
+    margin: 0;
+}
+
+/*<!-- HEADER-NAVBAR -->*/
+
+.header_bar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #d1d1d1;
+    padding: 10px;
+    margin-bottom: 20px
+}
+
+nav.nav-style img {
+    width: 30px;
+    height: 30px;
+    margin: 5px 10px 5px 5px;
+    cursor: pointer;
+}
+
+
+/*<!-- MAIN-BIKES -->*/
+.bike__box {
+    height: 300px;
+    width: 300px;
+    background-color: #dbe7d6;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 25px
+}
+
+/* CHECKOUT */
+table {
+    width: 400px;
+    border-spacing: 10px;
+}
+
+th {
+    text-align: left;
+    border-bottom: 1px solid;
+}
+
+/*<!-- LOGIN -->*/
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    margin: auto;
+    margin-top: 200px;
+    justify-content: center;
+    gap: 5px;
+}
+
+/* EDIT PAGE */
+.edit_bike_box {
+    width: 200px;
+    background-color: #dbe7d6;
+    display: flex;
+    flex-flow: column;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 2px;
+    padding: 25px;
+}
+
+
+/*<!-- FOOTER-INFO -->*/
+.footer {
+    position: fixed;
+    bottom: 0px;
+    background-color: #99a795;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

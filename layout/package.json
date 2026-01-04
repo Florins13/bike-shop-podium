@@ -1,0 +1,18 @@
+{
+  "name": "layout",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@podium/client": "^5.4.3",
+    "@podium/layout": "^5.3.7",
+    "express": "^5.2.1",
+    "node-fetch": "^3.3.2"
+  }
+}
