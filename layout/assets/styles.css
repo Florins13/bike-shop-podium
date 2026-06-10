@@ -1,4 +1,4 @@
-body{
+body {
     margin: 0;
 }
 
@@ -22,8 +22,8 @@ nav.nav-style img {
 
 /*<!-- MAIN-BIKES -->*/
 .bike__box {
-    height: 300px;
-    width: 300px;
+    height: 250px;
+    width: 250px;
     background-color: #dbe7d6;
     display: flex;
     flex-flow: column;
@@ -69,10 +69,67 @@ th {
 
 /*<!-- FOOTER-INFO -->*/
 .footer {
-    position: fixed;
+    position: relative;
     bottom: 0px;
     background-color: #99a795;
     width: 100%;
     display: flex;
     justify-content: center;
+}
+
+/* CART COMPONENT */
+.cart-bike__box {
+    height: 200px;
+    width: 180px;
+    background-color: #dbe7d6;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+    margin: 8px 0;
+    gap: 5px;
+}
+
+.cart-bike__box h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.cart-bike__box img {
+    border-radius: 6px;
+    box-shadow: none;
+    margin-bottom: 4px;
+    width: 60px;
+    height: 60px;
+}
+
+.cart-bike__box span {
+    display: block;
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 1px;
+}
+
+.cart-bike__box button {
+    background: #99a795;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 2px 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.cart-bike__box button:hover {
+    background: #7a8c74;
+}
+
+.cart-bike__box p {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 0 4px;
 }

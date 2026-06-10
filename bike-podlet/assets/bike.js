@@ -2,31 +2,33 @@
   const root = document.querySelector('[data-podlet="bikes"]');
   if (!root) return;
 
-  root.addEventListener('click', async (e) => {
-    // Get button and bike ID
-    const btn = e.target.closest('button');
-    if (!btn) return;
+  const cartUrl = root.getAttribute('data-cart-url') || 'http://localhost:8082';
+  const searchInput = root.querySelector('#search');
+  const bikeBoxes = root.querySelectorAll('.bike__box');
 
-    const bikeId = Number(btn.getAttribute('data-bike-id'));
+  // Search filtering
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase();
+      bikeBoxes.forEach(box => {
+        const model = box.querySelector('h4')?.textContent?.toLowerCase() || '';
+        box.style.display = model.includes(term) ? '' : 'none';
+      });
+    });
+  }
+
+  // Add to cart
+  root.addEventListener('click', async (e) => {
+    const btn = e.target.closest('button[data-bike-id]');
+    if (!btn || btn.disabled) return;
+
+    const bikeId = btn.getAttribute('data-bike-id');
     if (!bikeId) return;
 
-    // Handle Add to cart
-      await fetch(`http://localhost:8080/cart/add/${bikeId}`, {
-        method: 'POST'
-      });
-      window.location.reload();
-  
-
-    // // Handle Edit
-    // if (btn.classList.contains('edit-btn')) {
-    //   console.log('Edit bike:', bikeId);
-    //   // Emit event or navigate to edit page
-    // }
-
-    // // Handle Delete
-    // if (btn.classList.contains('delete-btn')) {
-    //   console.log('Delete bike:', bikeId);
-    //   // Emit event or call delete API
-    // }
+    await fetch(`${cartUrl}/cart/add/${bikeId}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    });
+    window.location.reload();
   });
 })();

@@ -1,0 +1,80 @@
+services:
+
+  bike-podlet:
+    build:
+      context: ./bike-podlet
+      dockerfile: Dockerfile
+    container_name: bike-podlet
+    ports:
+      - "7101:7101"
+    environment:
+      BIKE_SERVICE_URL: http://bike-service:8081
+      CART_SERVICE_URL_CLIENT: http://localhost:8082
+      BIKE_SERVICE_URL_CLIENT: http://localhost:8081
+      PUBLIC_URL: http://localhost:7101
+    networks:
+      - podium-net
+      - microservices-net
+    restart: unless-stopped
+
+  cart-podlet:
+    build:
+      context: ./cart-podlet
+      dockerfile: Dockerfile
+    container_name: cart-podlet
+    ports:
+      - "7102:7102"
+    environment:
+      CART_SERVICE_URL: http://cart-service:8082
+      CART_SERVICE_URL_CLIENT: http://localhost:8082
+      BIKE_SERVICE_URL_CLIENT: http://localhost:8081
+      PUBLIC_URL: http://localhost:7102
+    networks:
+      - podium-net
+      - microservices-net
+    restart: unless-stopped
+
+  order-podlet:
+    build:
+      context: ./order-podlet
+      dockerfile: Dockerfile
+    container_name: order-podlet
+    ports:
+      - "7103:7103"
+    environment:
+      ORDER_SERVICE_URL: http://order-service:8083
+      CART_SERVICE_URL: http://cart-service:8082
+      ORDER_SERVICE_URL_CLIENT: http://localhost:8083
+      CART_SERVICE_URL_CLIENT: http://localhost:8082
+      PUBLIC_URL: http://localhost:7103
+    networks:
+      - podium-net
+      - microservices-net
+    restart: unless-stopped
+
+  layout:
+    build:
+      context: ./layout
+      dockerfile: Dockerfile
+    container_name: podium-layout
+    ports:
+      - "8000:8000"
+    environment:
+      BIKE_PODLET_URL: http://bike-podlet:7101
+      CART_PODLET_URL: http://cart-podlet:7102
+      ORDER_PODLET_URL: http://order-podlet:7103
+    depends_on:
+      - bike-podlet
+      - cart-podlet
+      - order-podlet
+    networks:
+      - podium-net
+      - microservices-net
+    restart: unless-stopped
+
+networks:
+  podium-net:
+    driver: bridge
+  microservices-net:
+    external: true
+    name: software-engineering_default

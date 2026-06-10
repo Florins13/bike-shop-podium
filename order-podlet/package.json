@@ -1,0 +1,17 @@
+{
+  "name": "order-podlet",
+  "version": "1.0.0",
+  "description": "Order history podlet for Podium micro-frontend",
+  "main": "index.mjs",
+  "type": "module",
+  "scripts": {
+    "start": "node index.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@podium/podlet": "^5.3.3",
+    "express": "^5.2.1"
+  }
+}
