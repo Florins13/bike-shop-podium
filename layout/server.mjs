@@ -11,8 +11,11 @@ const ORDER_PODLET_URL = process.env.ORDER_PODLET_URL || "http://localhost:7103"
 const layout = new Layout({
   name: "my-layout",
   pathname: "/",
-  development: true,
+  development: process.env.NODE_ENV !== "production",
+  logger: console
 });
+
+console.log("ENV ->", process.env.NODE_ENV)
 
 const bikesPodlet = layout.client.register({
   name: "bikes",

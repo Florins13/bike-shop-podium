@@ -12,6 +12,7 @@ services:
       CART_SERVICE_URL_CLIENT: http://localhost:8082
       BIKE_SERVICE_URL_CLIENT: http://localhost:8081
       PUBLIC_URL: http://localhost:7101
+      NODE_ENV: production
     networks:
       - podium-net
       - microservices-net
@@ -29,6 +30,7 @@ services:
       CART_SERVICE_URL_CLIENT: http://localhost:8082
       BIKE_SERVICE_URL_CLIENT: http://localhost:8081
       PUBLIC_URL: http://localhost:7102
+      NODE_ENV: production
     networks:
       - podium-net
       - microservices-net
@@ -47,6 +49,7 @@ services:
       ORDER_SERVICE_URL_CLIENT: http://localhost:8083
       CART_SERVICE_URL_CLIENT: http://localhost:8082
       PUBLIC_URL: http://localhost:7103
+      NODE_ENV: production
     networks:
       - podium-net
       - microservices-net
@@ -63,6 +66,7 @@ services:
       BIKE_PODLET_URL: http://bike-podlet:7101
       CART_PODLET_URL: http://cart-podlet:7102
       ORDER_PODLET_URL: http://order-podlet:7103
+      NODE_ENV: production
     depends_on:
       - bike-podlet
       - cart-podlet

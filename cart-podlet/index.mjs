@@ -13,7 +13,7 @@ const podlet = new Podlet({
   name: "cart-podlet",
   version: "1.0.0",
   pathname: "/",
-  development: true,
+  development: process.env.NODE_ENV !== "production",
 });
 
 podlet.js({ value: `${PUBLIC_URL}/assets/cart.js`, defer: true });
@@ -33,7 +33,7 @@ app.get(podlet.content(), async (req, res) => {
           <div class="cart-bike__box">
             <button data-action="remove" data-id="${item.id}" style="width: 25px; align-self: end;">X</button>
             <h4 style="text-align: center;">Model: ${item.model}</h4>
-            <img src="${BIKE_SERVICE_URL_CLIENT}/images/${item.imageSource}" height="70" width="70" alt="${item.model}">
+            <img src="/assets/${item.imageSource}" height="70" width="70" alt="${item.model}">
             <span>Price: ${item.price}€</span>
             <div style="display: flex; align-items: center; gap: 20px;">
               <button data-action="decrease" data-id="${item.id}">-</button>
@@ -51,15 +51,17 @@ app.get(podlet.content(), async (req, res) => {
     const hasItems = cart.cartItems && cart.cartItems.some(item => item.quantity > 0);
 
     res.send(`
-      <div data-podlet="cart" data-cart-url="${CART_SERVICE_URL_CLIENT}" style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: space-evenly; width: 250px;">
-        Your Cart:
-        ${itemsHtml}
-      </div>
-      <div style="display: flex; flex-direction: row; justify-content: center; gap: 5px;">
-        <h3>Total: ${cartTotal} €</h3>
-        <button data-action="checkout" ${!hasItems ? 'disabled' : ''} style="height: 30px; align-self: center;">
-          Checkout
-        </button>
+      <div>
+        <div data-podlet="cart" data-cart-url="${CART_SERVICE_URL_CLIENT}" style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: space-evenly; width: 250px;">
+          Your Cart:
+          ${itemsHtml}
+        </div>
+        <div style="display: flex; flex-direction: row; justify-content: center; gap: 5px;">
+          <h3>Total: ${cartTotal} €</h3>
+          <button data-action="checkout" ${!hasItems ? 'disabled' : ''} style="height: 30px; align-self: center;">
+            Checkout
+          </button>
+        </div>
       </div>
     `);
   } catch (error) {

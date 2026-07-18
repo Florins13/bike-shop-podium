@@ -14,7 +14,7 @@ const podlet = new Podlet({
   name: "order-podlet",
   version: "1.0.0",
   pathname: "/",
-  development: true,
+  development: process.env.NODE_ENV !== "production",
 });
 
 podlet.js({ value: `${PUBLIC_URL}/assets/checkout.js`, defer: true });

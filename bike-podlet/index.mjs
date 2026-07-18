@@ -12,8 +12,10 @@ const podlet = new Podlet({
   name: "bikes-podlet",
   version: "1.0.0",
   pathname: "/",
-  development: true,
+  development: process.env.NODE_ENV !== "production"
 });
+
+console.log(process.env.NODE_ENV)
 
 podlet.js({ value: `${PUBLIC_URL}/assets/bike.js`, defer: true });
 
@@ -30,7 +32,7 @@ app.get(podlet.content(), async (req, res) => {
       : bikes.map(bike => `
           <div class="bike__box">
             <h4>Model: ${bike.model}</h4>
-            <img src="${BIKE_SERVICE_URL_CLIENT}/images/${bike.imageSource}" height="70" width="70" alt="${bike.model}">
+            <img src="/assets/${bike.imageSource}" height="70" width="70" alt="${bike.model}">
             <span>Stock: ${bike.availableStock}</span>
             <span>Details: ${bike.details}</span>
             <span>Electric: ${bike.electric ? 'Yes' : 'No'}</span>
